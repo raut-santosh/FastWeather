@@ -1,0 +1,334 @@
+body {
+    color: #fff;
+    overflow-x: hidden;
+    height: 100%;
+    background-image: linear-gradient(#81D4FA, #2196F3);
+    /* background-image: linear-gradient(#81D4FA, #6351ce); */
+    /* background-image: linear-gradient(#6351ce, #81D4FA ); */
+    background-repeat: no-repeat;
+    margin: 0;
+	padding: 0;
+	/* height: 1500px; */
+    height: 980px;
+    
+}
+
+body.fixed .header-fixed {
+	padding: 10px 40px;
+	height: 50px;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+/* header code */
+body.fixed .header-fixed-placeholder {
+	display: block;
+}
+
+body.fixed .header-fixed .header-limiter h1 {
+	font-size: 24px;
+	line-height: 30px;
+}
+
+body.fixed .header-fixed .header-limiter nav {
+	line-height: 28px;
+	font-size: 13px;
+}
+
+.header-fixed {
+	background-color:#292c2f;
+    /* background-color: #2196F3; */
+	box-shadow:0 1px 1px #ccc;
+	padding: 20px 40px;
+	height: 80px;
+	color: #ffffff;
+	box-sizing: border-box;
+	top:-100px;
+
+	-webkit-transition:top 0.3s;
+	transition:top 0.3s;
+}
+
+.header-fixed .header-limiter {
+	max-width: 1200px;
+	text-align: center;
+	margin: 0 auto;
+}
+
+.header-fixed-placeholder{
+	height: 80px;
+	display: none;
+}
+
+/* Logo */
+
+.header-fixed .header-limiter h1 {
+	float: left;
+	font: normal 28px Cookie, Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	margin: 0;
+}
+
+.header-fixed .header-limiter h1 span {
+	/* color: #5383d3; */
+	color: #2196F3;
+}
+
+
+.header-fixed .header-limiter a {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.header-fixed .header-limiter nav {
+	font:16px Arial, Helvetica, sans-serif;
+	line-height: 40px;
+	float: right;
+}
+
+.header-fixed .header-limiter nav a{
+	display: inline-block;
+	padding: 0 5px;
+	text-decoration:none;
+	color: #ffffff;
+	opacity: 0.9;
+}
+
+.header-fixed .header-limiter nav a:hover{
+	opacity: 1;
+}
+
+.header-fixed .header-limiter nav a.selected {
+	/* color: #608bd2; */
+	color: #2196F3;
+	pointer-events: none;
+	opacity: 1;
+}
+
+.header-icon{
+    width: 30px;
+}
+
+
+
+/* header code end */
+
+.card0 {
+    width: 94%;
+}
+
+.card1 {
+    background-image: linear-gradient(#2196F3, #81D4FA);
+    padding: 30px 20px 30px 50px;
+}
+
+.image {
+    width: 300px;
+    height: 300px;
+}
+
+.large-font {
+    font-size: 70px;
+    font-family: Arial;
+}
+
+.fa-sun-o {
+    font-size: 22px;
+}
+
+.card2 {
+    background-color: #607D8B;
+    padding: 0px 0px 40px 40px;
+}
+
+input {
+    background-color: #607D8B;
+    padding: 24px 0px 12px 0px !important;
+    width: 80%;
+    box-sizing: border-box;
+    border: none !important;
+    border-bottom: 1px solid #CFD8DC !important;
+    font-size: 16px !important;
+    color: #fff !important;
+}
+
+input:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border-bottom: 1px solid #fff !important;
+    outline-width: 0;
+    font-weight: 400;
+}
+
+::placeholder {
+    color: #B0BEC5 !important;
+    opacity: 1;
+}
+
+:-ms-input-placeholder {
+    color: #B0BEC5 !important;
+}
+
+::-ms-input-placeholder {
+    color: #B0BEC5 !important;
+}
+
+.fa-search {
+    color: #607D8B;
+    background-color: #E1F5FE;
+    font-size: 20px;
+    padding: 20px;
+    width: 20%;
+    cursor: pointer;
+}
+
+.light-text {
+    color: #B0BEC5;
+}
+
+.suggestion:hover {
+    color: #fff;
+    cursor: pointer;
+}
+
+.line {
+    height: 1px;
+    background-color: #B0BEC5;
+}
+/* to hide scroll bar without loosing functionality */
+
+body {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+body::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+}
+
+@media screen and (max-width: 500px) {
+    .card1 {
+        padding-left: 26px;
+    }
+}
+
+/* header responsive */
+
+@media all and (max-width: 600px) {
+
+	.header-fixed {
+		padding: 20px 0;
+		height: 75px;
+	}
+
+	.header-fixed .header-limiter h1 {
+		float: none;
+		margin: -8px 0 10px;
+		text-align: center;
+		font-size: 24px;
+		line-height: 1;
+	}
+
+	.header-fixed .header-limiter nav {
+		line-height: 1;
+		float:none;
+	}
+
+	.header-fixed .header-limiter nav a {
+		font-size: 13px;
+	}
+
+	body.fixed .header-fixed {
+		display: none;
+	}
+
+}
+
+.fa-search{
+    border: none;
+}
+.fa-search:focus{
+    /* outline: 3px solid #152a68; */
+    outline: none;
+}
+
+/* 404 */
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 490px;
+    color: white;
+    animation: colorSlide 15s cubic-bezier(0.075, 0.82, 0.165, 1) infinite;
+}
+.flex-container .text-center {
+    text-align: center;
+}
+.flex-container .text-center h1, .flex-container .text-center h3 {
+    margin: 10px;
+    cursor: default;
+}
+.flex-container .text-center h1 .fade-in, .flex-container .text-center h3 .fade-in {
+    animation: fadeIn 2s ease infinite;
+}
+.flex-container .text-center h1 {
+    font-size: 8em;
+    transition: font-size 200ms ease-in-out;
+    border-bottom: 1px dashed white;
+}
+.flex-container .text-center h1 span#digit1 {
+    animation-delay: 200ms;
+}
+.flex-container .text-center h1 span#digit2 {
+    animation-delay: 300ms;
+}
+.flex-container .text-center h1 span#digit3 {
+    animation-delay: 400ms;
+}
+.flex-container .text-center .button {
+    border: 1px solid white;
+    background: transparent;
+    outline: none;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+    transition: background-color 200ms ease-in;
+    margin: 20px 0;
+}
+.flex-container .text-center button:hover {
+    background-color: white;
+    color: #555;
+    cursor: pointer;
+}
+@keyframes colorSlide {
+    0% {
+        /* background-color: #152a68; */
+        background-color: #81D4FA;
+   }
+    25% {
+        /* background-color: royalblue; */
+        background-color: #152a68;
+   }
+    50% {
+        /* background-color: seagreen; */
+        background-color: royalblue;
+   }
+    75% {
+        background-color: tomato;
+   }
+    100% {
+        background-color: #152a68;
+   }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+   }
+    100% {
+        opacity: 1;
+   }
+}
