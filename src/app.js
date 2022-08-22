@@ -6,6 +6,7 @@ const express = require("express");
 // we only need to load hbs for patioals
 const hbs = require("hbs");
 const request = require("request");
+const { json } = require("express");
 const axios = require("axios").default;
 
 const app = express();
@@ -24,85 +25,86 @@ hbs.registerPartials(partialsPath);
 // it will serve static folder no dynamic changes
 app.use(express.static(publicDir));
 
-// ip city logic
-const ipUrl = "https://ipapi.co/json/";
+app.get("", (req, response) => {
+  if (!req.query.location) {
+    const ipUrl = "https://ipapi.co/json/";
 
-// after using hbs
-app.get("", (req, res) => {
-  // let address = "jintur";
-  let address = req.query.location;
-  if (!address) {
-    address = "jintur";
-  }
+    axios
+      .get(ipUrl)
+      .then((result) => {
+        console.log("result of ipUrl axios: " + result.data.city);
+        // console.log(util.inspect(result, { showHidden: false, depth: null }));
 
-  // axios
-  //   .get(ipUrl)
-  //   .then((result) => {
-  //     let address = result.data.city;
-  //     // getCity(result.data.city);
-  //   })
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // async function getCity() {
-  //   try {
-  //     const response = await axios.get(ipUrl);
-  //     console.log(response.data.city);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // }
-  // getCity();
-
-  // const getCity = (city) => (address = city);
-  // logic start
-
-  const url =
-    "https://api.openweathermap.org/data/2.5/weather?q=" +
-    encodeURIComponent(address) +
-    "&appid=d70b68152c79ac87b7e33d63ec09b403&units=metric";
-
-  request({ url: url, json: true }, (error, response) => {
-    if (error) {
-      // console.log(error)
-      return (msg = "Unable to connect to weather services!");
-    } else if (response.body.message) {
-      return (msg = "Unable to get location please enter correct name. ");
-    } else {
-      // callback(
-      //   undefined,
-      //   "Current weather is : " + response.body.main.temp + " C"
-      // );
-      // res.send({
-      //   msg: response.body.main.temp,
-      // });
-      const d = new Date();
-
-      res.render("index", {
-        location: response.body.name,
-        temp: Math.trunc(response.body.main.temp),
-        main: response.body.weather[0].main,
-        humidity: response.body.main.humidity,
-        wind: Math.trunc(response.body.wind.speed * 3.6),
-        cloudy: response.body.clouds.all,
-        description: response.body.weather[0].description,
-        hour: d.getHours() % 12 || 12,
-        min: ("0" + d.getMinutes()).slice(-2),
-        day: d.toLocaleString("default", { weekday: "long" }),
-        date: d.getDate(),
-        month: d.toLocaleString("default", { month: "short" }),
-        year: d.getFullYear(),
+        const url =
+          "https://api.openweathermap.org/data/2.5/weather?q=" +
+          encodeURIComponent(result.data.city) +
+          "&appid=d70b68152c79ac87b7e33d63ec09b403&units=metric";
+        axios
+          .get(url)
+          .then((res) => {
+            //   console.log(res.data);
+            const d = new Date();
+            response.render("index", {
+              location: res.data.name,
+              temp: Math.trunc(res.data.main.temp),
+              main: res.data.weather[0].main,
+              humidity: res.data.main.humidity,
+              wind: Math.trunc(res.data.wind.speed * 3.6),
+              cloudy: res.data.clouds.all,
+              description: res.data.weather[0].description,
+              hour: d.getHours() % 12 || 12,
+              min: ("0" + d.getMinutes()).slice(-2),
+              day: d.toLocaleString("default", { weekday: "long" }),
+              date: d.getDate(),
+              month: d.toLocaleString("default", { month: "short" }),
+              year: d.getFullYear(),
+              msg: "PAGE NOT FOUND",
+            });
+          })
+          .catch((error) => {
+            console.log("error");
+          });
+      })
+      .catch((error) => {
+        console.log("error ");
       });
-    }
-  });
+  } else {
+    let address = req.query.location;
+    const url =
+      "https://api.openweathermap.org/data/2.5/weather?q=" +
+      encodeURIComponent(address) +
+      "&appid=d70b68152c79ac87b7e33d63ec09b403&units=metric";
 
-  // logic end
-
-  // res.render("index", {
-  //   location: address,
-  //   temp: msg,
-  // });
+    axios
+      .get(url)
+      .then((res) => {
+        const d = new Date();
+        response.render("index", {
+          location: res.data.name,
+          temp: Math.trunc(res.data.main.temp),
+          main: res.data.weather[0].main,
+          humidity: res.data.main.humidity,
+          wind: Math.trunc(res.data.wind.speed * 3.6),
+          cloudy: res.data.clouds.all,
+          description: res.data.weather[0].description,
+          hour: d.getHours() % 12 || 12,
+          min: ("0" + d.getMinutes()).slice(-2),
+          day: d.toLocaleString("default", { weekday: "long" }),
+          date: d.getDate(),
+          month: d.toLocaleString("default", { month: "short" }),
+          year: d.getFullYear(),
+          msg: "PAGE NOT FOUND",
+        });
+      })
+      .catch((error) => {
+        // console.log("error 2");
+        const d = new Date();
+        response.render("404", {
+          msg: "City not found please enter correct name",
+          // note: req.toastr.success("hi this is success"),
+        });
+      });
+  }
 });
 
 app.get("/about", (req, res) => {
@@ -118,7 +120,7 @@ app.get("/help", (req, res) => {
   });
 });
 
-// defalut route for /
+// default route for /
 // app.get("", (req, res) => {
 //   res.send("<h1> Hello world </h1>");
 // });

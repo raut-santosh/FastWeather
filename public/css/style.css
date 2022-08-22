@@ -332,3 +332,9 @@ body::-webkit-scrollbar {
         opacity: 1;
    }
 }
+
+/* about page */
+.about-div img{
+    width: 200px;
+    height: 200px;
+}
