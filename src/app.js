@@ -10,6 +10,7 @@ const { json } = require("express");
 const axios = require("axios").default;
 
 const app = express();
+const port = process.env.PORT || 3000;
 
 // console.log(__dirname);
 // console.log(__filename);
@@ -192,6 +193,6 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(3000, () => {
-  console.log("server is started on port ", 3000);
+app.listen(port, () => {
+  console.log("server is started on port ", port);
 });
